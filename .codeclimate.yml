@@ -14,7 +14,7 @@ engines:
   phpcodesniffer:
     enabled: true
     config:
-      standard: "PSR2"
+      standard: phpcs.ruleset.xml
 ratings:
   paths:
   - "**.inc"
