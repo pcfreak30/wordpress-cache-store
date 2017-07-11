@@ -81,7 +81,7 @@ class Store {
 	/**
 	 * @return mixed
 	 */
-	protected function get_transient() {
+	public function get_transient() {
 		if ( is_multisite() ) {
 			return call_user_func_array( 'get_site_transient', func_get_args() );
 		}
@@ -113,7 +113,7 @@ class Store {
 	/**
 	 * @return bool
 	 */
-	protected function delete_transient() {
+	public function delete_transient() {
 		if ( is_multisite() ) {
 			return call_user_func_array( 'delete_site_transient', func_get_args() );
 		}
@@ -183,7 +183,7 @@ class Store {
 	/**
 	 *
 	 */
-	protected function set_transient() {
+	public function set_transient() {
 		if ( is_multisite() ) {
 			return call_user_func_array( 'set_site_transient', func_get_args() );
 		}
