@@ -30,7 +30,7 @@ class Store {
 		$counter_transient = "{$path}cache_count";
 		$counter           = $this->get_transient( $counter_transient );
 
-		if ( is_null( $counter ) || false === $counter ) {
+		if ( $counter === null || false === $counter ) {
 			return $this->delete_cache_leaf( rtrim( $path, '_' ) );
 		}
 		for ( $i = 1; $i <= $counter; $i ++ ) {
@@ -193,7 +193,7 @@ class Store {
 			if ( $i + 1 < $levels ) {
 				$transient_value[] = $this->prefix . implode( '_', array_slice( $path, 0, $i + 2 ) );
 			}
-			if ( ! is_null( $cache ) && false !== $cache ) {
+			if ( null !== $cache && false !== $cache ) {
 				$transient_value = array_unique( array_merge( $cache, $transient_value ) );
 			}
 			$this->set_transient( $transient_cache_id, $transient_value, $expire );
@@ -203,7 +203,7 @@ class Store {
 			}
 			$transient_counter_id .= '_count';
 			$transient_counter    = $this->get_transient( $transient_counter_id );
-			if ( is_null( $transient_counter ) || false === $transient_counter ) {
+			if ( null === $transient_counter || false === $transient_counter ) {
 				$this->set_transient( $transient_counter_id, 1, $expire );
 			}
 		}
