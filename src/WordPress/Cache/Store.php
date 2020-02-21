@@ -181,10 +181,10 @@ class Store {
 	protected function build_cache_tree( $path ) {
 		$levels = count( $path );
 		$expire = $this->expire;
-		for ( $i = 0; $i < $levels; $i ++ ) {
+		foreach ( $path as $i => $element ) {
 			$transient_id       = $this->prefix . implode( '_', array_slice( $path, 0, $i + 1 ) );
 			$transient_cache_id = $transient_id;
-			if ( 'cache' !== $path[ $i ] ) {
+			if ( 'cache' !== $element ) {
 				$transient_cache_id .= '_cache';
 			}
 			$transient_cache_id .= '_1';
@@ -198,7 +198,7 @@ class Store {
 			}
 			$this->set_transient( $transient_cache_id, $transient_value, $expire );
 			$transient_counter_id = $transient_id;
-			if ( 'cache' !== $path[ $i ] ) {
+			if ( 'cache' !== $element ) {
 				$transient_counter_id .= '_cache';
 			}
 			$transient_counter_id .= '_count';
@@ -224,6 +224,8 @@ class Store {
 	/**
 	 * @param $path
 	 * @param $value
+	 *
+	 * @return mixed
 	 */
 	protected function update_tree_leaf( $path, $value ) {
 		$leaf              = $this->prefix . implode( '_', $path );
