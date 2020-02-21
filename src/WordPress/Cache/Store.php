@@ -227,7 +227,7 @@ class Store {
 	 */
 	protected function update_tree_leaf( $path, $value ) {
 		$leaf              = $this->prefix . implode( '_', $path );
-		$parent_path       = array_slice( $path, 0, is_multisite() ? - 2 : - 1 );
+		$parent_path       = array_slice( $path, 0, - 1 );
 		$parent            = $this->prefix . implode( '_', $parent_path );
 		$counter_transient = $parent;
 		$cache_transient   = $parent;
